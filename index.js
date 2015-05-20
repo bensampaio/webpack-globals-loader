@@ -34,5 +34,5 @@ module.exports = function(content) {
 	// Save module as loaded so we don't have to load it again
 	loadedResources[outputName][inputFile] = true;
 
-	return null;
+	return '';
 }
