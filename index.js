@@ -27,9 +27,6 @@ module.exports = function(content) {
 	else if(!(inputFile in loadedResources[outputName])) {
 		fs.appendFileSync(outputFile, content, fsOptions);
 	}
-	else {
-		this.emitWarning(inputFile);
-	}
 
 	// Save module as loaded so we don't have to load it again
 	loadedResources[outputName][inputFile] = true;

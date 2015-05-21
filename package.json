@@ -1,6 +1,6 @@
 {
 	"name": "globals-loader",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"author": "Bruno Sampaio",
 	"description": "globals loader for webpack",
 	"main": "index.js",
