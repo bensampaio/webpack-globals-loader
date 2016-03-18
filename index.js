@@ -1,7 +1,17 @@
 var fs = require('fs');
 var loaderUtils = require("loader-utils");
-
 var loadedResources = {};
+
+var mkdirp = require('mkdirp');
+var getDirName = require('path').dirname;
+
+/**
+ * Makes the directory path before trying to create the file
+*/
+function writeFile(path, contents, fsOptions) {
+  mkdirp.sync(getDirName(path));
+  fs.writeFileSync(path, contents, fsOptions);
+}
 
 module.exports = function(content) {
 	var self = this;
@@ -20,7 +30,7 @@ module.exports = function(content) {
 	// If no resources have been loaded yet it means the file has to be emptied
 	if(!(outputName in loadedResources)) {
 		loadedResources[outputName] = {};
-		fs.writeFileSync(outputFile, content, fsOptions);
+		writeFile(outputFile, content, fsOptions);
 	}
 
 	// If module not loaded yet
