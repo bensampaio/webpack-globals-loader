@@ -1,30 +1,38 @@
-var fs = require('fs');
-var loaderUtils = require("loader-utils");
+const fs = require('fs');
+const loaderUtils = require("loader-utils");
 
-var loadedResources = {};
+/**
+ * Stores the loaded resources.
+ * @type {Object}
+ */
+const loadedResources = {};
 
-module.exports = function(content) {
-	var self = this;
+/**
+ *
+ * @param {string} content
+ * @returns {string}
+ */
+module.exports = (content) => {
 
-	var query = loaderUtils.parseQuery(this.query);
-	var outputName = (query.o || 'vendor');
+	const query = loaderUtils.parseQuery(this.query);
+	const outputName = (query.o || 'vendor');
 
-	var inputFile = this.resourcePath;
-	var outputFile = this.options.output.path + '/' + outputName + '.js';
+	const inputFile = this.resourcePath;
+	const outputFile = this.options.output.path + '/' + outputName + '.js';
 
-	var fsOptions = { encoding : 'utf8' };
+	const fsOptions = { encoding : 'utf8' };
 
 	this.cacheable && this.cacheable();
-	if(!this.emitFile) throw new Error("emitFile is required from module system");
+	if (!this.emitFile) throw new Error("emitFile is required from module system");
 
 	// If no resources have been loaded yet it means the file has to be emptied
-	if(!(outputName in loadedResources)) {
+	if (!(outputName in loadedResources)) {
 		loadedResources[outputName] = {};
 		fs.writeFileSync(outputFile, content, fsOptions);
 	}
 
 	// If module not loaded yet
-	else if(!(inputFile in loadedResources[outputName])) {
+	else if (!(inputFile in loadedResources[outputName])) {
 		fs.appendFileSync(outputFile, content, fsOptions);
 	}
 
@@ -32,4 +40,5 @@ module.exports = function(content) {
 	loadedResources[outputName][inputFile] = true;
 
 	return '';
+
 }

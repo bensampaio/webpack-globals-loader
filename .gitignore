@@ -1,4 +1,5 @@
-/node_modules
 ._*
 .DS_Store
+.idea
 .TemporaryItems
+node_modules

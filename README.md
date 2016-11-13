@@ -1,5 +1,7 @@
 # globals loader for webpack
 
+**Note**: There are currently two issues with this loader that I cannot find a solution to. Those two issues make the loader unusable in most situations. If you are interested in this project and have the time to invest on looking for a solution or if you know the solution to the problem, please let me know. Thank you!
+
 ## Motivation
 
 I decided to create this loader after realising how difficult it was to simply require dependencies that just define global variables, like jQuery and AngularJS. Those dependencies are not modules and on some cases I don't think it makes any sense to force them to behave as so. Besides that, webpack also didn't provide a way to only include those dependencies in a file if they were explicitly required.
