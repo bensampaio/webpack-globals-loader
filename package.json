@@ -7,6 +7,9 @@
 	"dependencies": {
 		"loader-utils": "~0.2.*"
 	},
+	"peerDependencies": {
+		"webpack": "^1.0.0"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:bensampaio/webpack-globals-loader.git"
